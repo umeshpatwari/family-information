@@ -22,12 +22,12 @@ class SaveFamilyMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Name' => 'required|string|max:255',
-            'Birthdate' => 'required|date',
-            'MaritalStatus' => 'required|string|in:married,unmarried',
-            'WeddingDate' => 'nullable|date',
-            'Education' => 'nullable|string',
-            'Photo' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'birthdate' => 'required|date',
+            'marital_status' => 'required|string|in:married,unmarried',
+            'wedding_date' => 'nullable|date',
+            'education' => 'nullable|string',
+            'photo' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
         ];
     }
 }

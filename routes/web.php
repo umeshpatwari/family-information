@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\FamilyMemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,12 @@ Route::get('/', function () {
 Route::get('/families', [FamilyController::class, 'index'])->name('families.index');
 Route::get('/families/create', [FamilyController::class, 'create'])->name('families.create');
 Route::post('/families', [FamilyController::class, 'store'])->name('families.store');
+
+Route::get('/family-member/create/{id}', [FamilyMemberController::class, 'create'])->name('family-members.create');
+
+Route::post('/family-member', [FamilyMemberController::class, 'store'])->name('family-members.store');
+
+
 Route::get('/families/{family}', [FamilyController::class, 'show'])->name('families.show');
 Route::get('/families/{family}/edit', [FamilyController::class, 'edit'])->name('families.edit');
 Route::put('/families/{family}', [FamilyController::class, 'update'])->name('families.update');

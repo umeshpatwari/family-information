@@ -1,14 +1,43 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
-    <h1>Family List</h1>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
 
-    <ul>
-        @foreach($families as $family)
-            <li>
-                <a href="{{ route('families.show', $family->id) }}">{{ $family->Name }}</a>
-            </li>
-        @endforeach
-    </ul>
-    
-    <a href="{{ route('families.create') }}">Create New Family</a>
+  <!-- Main content -->
+  <section class="content">
+
+     <div class="container-fluid mt-4">
+      <div class="pull-right mb-2">
+      <a class="btn btn-success" href="{{ route('families.create') }}"> Create Families</a>
+      </div>
+      @if(session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+      @endif
+      <table class="table table-bordered data-table" id="datatable-head-families">
+        <thead>
+            <tr>
+
+                <!-- <th>id</th> -->
+                <th>Name</th>
+                <th>Sirname</th>
+                <th>Birthday</th>
+                <th>Count</th>
+                <!-- <th>City</th>
+                <th>Pincode</th>
+                <th>MaritalStatus</th>
+                <th>WeddingDate</th> -->
+                <!-- <th>Created Date</th> -->
+                <th width="100px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+  </div> 
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 @endsection

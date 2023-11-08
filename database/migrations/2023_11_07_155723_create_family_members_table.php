@@ -11,12 +11,12 @@ class CreateFamilyMembersTable extends Migration
         Schema::create('family_members', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('family_id'); // Foreign key to reference 'families' table
-            $table->string('Name');
-            $table->date('Birthdate');
-            $table->enum('MaritalStatus', ['Married', 'Unmarried']);
-            $table->date('WeddingDate')->nullable(); // Only used if 'IsMarried' is true
-            $table->string('Education');
-            $table->string('Photo')->nullable(); // Assuming you store photo paths
+            $table->string('name');
+            $table->date('birthdate');
+            $table->enum('marital_status', ['Married', 'Unmarried']);
+            $table->date('wedding_date')->nullable(); // Only used if 'IsMarried' is true
+            $table->string('education');
+            $table->string('photo')->nullable(); // Assuming you store photo paths
             $table->timestamps();
 
             $table->foreign('family_id')->references('id')->on('families');

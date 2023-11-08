@@ -11,7 +11,12 @@
     <div class="container mt-4">
         @yield('content')
     </div>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="{{ url('js/custom.js') }}"></script>
 </body>
 </html>
