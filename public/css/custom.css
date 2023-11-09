@@ -2,3 +2,7 @@ form {
     padding: 50px;
     background: #e6e6e6;
 }
+label.error {
+    color: red;
+    width: 100%;
+}

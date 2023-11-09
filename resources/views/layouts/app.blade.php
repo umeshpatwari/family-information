@@ -17,6 +17,10 @@
         @yield('content')
     </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Add these scripts in the head or just before closing the body tag -->
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     
 
