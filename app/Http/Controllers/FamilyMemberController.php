@@ -8,9 +8,10 @@ use App\Http\Requests\SaveFamilyMemberRequest;
 
 class FamilyMemberController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        // Logic to retrieve a list of family members.
+        $family_member = FamilyMember::where('family_id',$id)->get();
+        return view('families.members.index', compact('family_member','id'));
     }
 
     public function create($id)

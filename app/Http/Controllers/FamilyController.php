@@ -21,20 +21,20 @@ class FamilyController extends Controller
                 // echo '<pre>';
                 // print_r($families);
                 // die;
-        if(request()->ajax()) {
-                $query = Family::withCount('familyMembers')
-                    ->select('id','name', 'surname', 'birthdate', 'mobile_no', 'address', 'state', 'city', 'pincode','marital_status','wedding_date','hobbies','photo');
+        // if(request()->ajax()) {
+        //         $query = Family::withCount('familyMembers')
+        //             ->select('id','name', 'surname', 'birthdate', 'mobile_no', 'address', 'state', 'city', 'pincode','marital_status','wedding_date','hobbies','photo');
 
-                return datatables()->of($query)
-                    ->addColumn('family_members_count', function ($family) {
-                        return $family;
-                    })
-                    ->addColumn('action', 'families.action')
-                    ->rawColumns(['action'])
-                    ->addIndexColumn()
-                    ->escapeColumns([])
-                    ->make(true);
-            }
+        //         return datatables()->of($query)
+        //             ->addColumn('family_members_count', function ($family) {
+        //                 return $family->family_members_count;
+        //             })
+        //             ->addColumn('action', 'families.action')
+        //             ->rawColumns(['action'])
+        //             ->addIndexColumn()
+        //             ->escapeColumns([])
+        //             ->make(true);
+        //     }
 
         return view('families.index', compact('families'));
     }
@@ -50,6 +50,13 @@ class FamilyController extends Controller
         
          try{
             $input = $request->all();
+
+            if ($photo = $request->file('photo')) {
+                $destinationPath = 'images/family/';
+                $profileImage = date('YmdHis') . "." . $photo->getClientOriginalExtension();
+                $photo->move($destinationPath, $profileImage);
+                $input['photo'] = "$profileImage";
+            }
 
             $input['hobbies'] = json_encode($input['hobbies']);
             $input['updated_at'] = Carbon::now(); 

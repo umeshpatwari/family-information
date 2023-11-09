@@ -25,6 +25,8 @@ Route::post('/families', [FamilyController::class, 'store'])->name('families.sto
 
 Route::get('/family-member/create/{id}', [FamilyMemberController::class, 'create'])->name('family-members.create');
 
+Route::get('/family-member/{id}', [FamilyMemberController::class, 'index'])->name('family-members.index');
+
 Route::post('/family-member', [FamilyMemberController::class, 'store'])->name('family-members.store');
 
 

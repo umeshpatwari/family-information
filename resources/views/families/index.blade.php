@@ -21,9 +21,10 @@
 
                 <!-- <th>id</th> -->
                 <th>Name</th>
+                 <th>Photo</th>
                 <th>Sirname</th>
                 <th>Birthday</th>
-                <th>Count</th>
+                <th>Total Family Members</th>
                 <!-- <th>City</th>
                 <th>Pincode</th>
                 <th>MaritalStatus</th>
@@ -33,6 +34,18 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($families as $family)
+            <tr role="row" class="odd">
+                <td class="sorting_1">{{$family->name}}</td>
+                <td class="sorting_1">{{$family->photo}}</td>
+                <td>{{$family->surname}}</td>
+                <td>{{$family->birthdate}}</td>
+                <td><a href="{{ route('family-members.index',$family->id) }}" class="add btn btn-sm btn-success">{{$family->family_members_count}}</a></td>
+                <td>
+                    <a href="{{ route('family-members.create',$family->id) }}" class="add btn btn-sm btn-warning">Add Family Member</a>
+            </td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
   </div> 
