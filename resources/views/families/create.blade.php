@@ -8,8 +8,8 @@
               {{ session('error_message_catch') }}
           </div>
         @endif
-        <div class="col-md-12">
-            <h2>Family Information Form</h2>
+        <div class="col-md-8 mx-auto">
+            
             <form method="POST" action="{{ route('families.store') }}" enctype="multipart/form-data">
                 @csrf
 

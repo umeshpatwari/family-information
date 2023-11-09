@@ -17,25 +17,7 @@ class FamilyController extends Controller
    public function index()
     {
         $families = Family::withCount('familyMembers')->get();
-        //dd($families);
-                // echo '<pre>';
-                // print_r($families);
-                // die;
-        // if(request()->ajax()) {
-        //         $query = Family::withCount('familyMembers')
-        //             ->select('id','name', 'surname', 'birthdate', 'mobile_no', 'address', 'state', 'city', 'pincode','marital_status','wedding_date','hobbies','photo');
-
-        //         return datatables()->of($query)
-        //             ->addColumn('family_members_count', function ($family) {
-        //                 return $family->family_members_count;
-        //             })
-        //             ->addColumn('action', 'families.action')
-        //             ->rawColumns(['action'])
-        //             ->addIndexColumn()
-        //             ->escapeColumns([])
-        //             ->make(true);
-        //     }
-
+       
         return view('families.index', compact('families'));
     }
 

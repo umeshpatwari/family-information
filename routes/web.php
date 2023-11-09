@@ -15,10 +15,7 @@ use App\Http\Controllers\FamilyMemberController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [FamilyController::class, 'index'])->name('families.index');
 Route::get('/families', [FamilyController::class, 'index'])->name('families.index');
 Route::get('/families/create', [FamilyController::class, 'create'])->name('families.create');
 Route::post('/families', [FamilyController::class, 'store'])->name('families.store');

@@ -23,6 +23,12 @@ class FamilyMemberController extends Controller
     {
         try{
             $input = $request->all();
+            if ($photo = $request->file('photo')) {
+                $destinationPath = 'images/family/';
+                $profileImage = date('YmdHis') . "." . $photo->getClientOriginalExtension();
+                $photo->move($destinationPath, $profileImage);
+                $input['photo'] = "$profileImage";
+            }
             $families = FamilyMember::create($input);
 
         } catch (\Exception $e) {

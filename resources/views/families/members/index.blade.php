@@ -29,8 +29,14 @@
         <tbody>
             @foreach ($family_member as $member)
             <tr role="row" class="odd">
-                <td class="sorting_1">{{$member->name}}</td>
-                <td class="sorting_1">{{$member->photo}}</td>
+                <td>{{$member->name}}</td>
+                <td>
+                    @if(!empty($member->photo))
+                        <img src="{{ asset('images/family/' . $member->photo) }}" alt="Member Photo" width="90">
+                    @else
+                        <!-- Display something if the photo doesn't exist or is empty -->
+                    @endif
+                </td>
                 <td>{{$member->birthdate}}</td>
                 <td>{{$member->marital_status}}</td>
                 <td>{{$member->wedding_date}}</td>
