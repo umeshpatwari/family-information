@@ -7,14 +7,37 @@ use App\Models\Family;
 use App\Models\FamilyMember;
 use App\Http\Requests\SaveFamilyRequest;
 use App\Http\Requests\SaveFamilyMemberRequest;
-
+use DataTables;
 class FamilyController extends Controller
 {
    public function index()
     {
-        $families = Family::withCount('familyMembers')->get();
-       
-        return view('families.index', compact('families'));
+        return view('families.index');
+    }
+
+    public function datatable()
+    {
+        $families = Family::withCount('familyMembers');
+
+        return DataTables::of($families)
+            ->addColumn('image', function ($family) {
+                $imagePath = public_path('images/' . $family->photo);
+
+                if (file_exists($imagePath)) {
+                    return '<img src="' . asset('images/' . $family->photo) . '" alt="Family Image" width="50" height="50">';
+                } else {
+                    return 'No Image';
+                }
+            })
+            ->addColumn('family_members_count', function ($family) {
+                return '<a href="' . route('family-members.index', $family->id) . '">' . $family->family_members_count . '</a>';
+            })
+            ->addColumn('action', function ($family) {
+                // Add any additional columns you need
+                return '<a href="' . route('family-members.create', $family->id) . '" class="add btn btn-sm btn-warning">Add Family Member</a>';
+            })
+            ->rawColumns(['family_members_count', 'action'])
+            ->make(true);
     }
 
     public function create()

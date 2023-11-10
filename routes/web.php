@@ -19,6 +19,8 @@ Route::get('/', [FamilyController::class, 'index'])->name('families.index');
 Route::get('/families', [FamilyController::class, 'index'])->name('families.index');
 Route::get('/families/create', [FamilyController::class, 'create'])->name('families.create');
 Route::post('/families', [FamilyController::class, 'store'])->name('families.store');
+Route::get('families/datatable', [FamilyController::class,'datatable'])->name('families.datatable');
+
 
 Route::get('/family-member/create/{id}', [FamilyMemberController::class, 'create'])->name('family-members.create');
 

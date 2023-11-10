@@ -70,6 +70,21 @@ $(document).ready(function () {
             });
         });
 
+        $('#familyTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "http://localhost/family-information/public/families/datatable",
+            columns: [
+                { data: 'name', name: 'name' },
+                { data: 'image', name: 'image' },
+                { data: 'surname', name: 'surname' },
+                { data: 'birthdate', name: 'birthdate' },
+                { data: 'family_members_count', name: 'family_members_count' },
+                // Add any additional columns here
+                { data: 'action', name: 'action', orderable: false, searchable: false },
+            ],
+        });
+
         //Validation Code
         $("#store_family").validate({
             rules: {
