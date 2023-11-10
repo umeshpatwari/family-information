@@ -121,6 +121,40 @@
                 <h3>Family Members</h3>
                 <div id="family-members">
                     <!-- Family member fields can be dynamically added here -->
+                     @if ($errors->has('family_name.*') || $errors->has('family_birthdate.*') || $errors->has('family_marital_status.*'))
+                            kdsnfhdhfewi dfhewyfey
+                        @foreach (old('family_name', ['']) as $index => $familyName)
+                            <div class="family-member">
+                                <h4>Family Member</h4>
+                                <label for="family_name">Name:</label>
+                                <input type="text" name="family_name[]" class="form-control" value="{{ old("family_name.$index") }}" required>
+                                @if ($errors->has("family_name.$index"))
+                                    <span class="text-danger">{{ $errors->first("family_name.$index") }}</span>
+                                @endif
+
+                                <label for="family_birthdate">Birthdate:</label>
+                                <input type="date" name="family_birthdate[]" class="form-control" value="{{ old("family_birthdate.$index") }}" required>
+                                @if ($errors->has("family_birthdate.$index"))
+                                    <span class="text-danger">{{ $errors->first("family_birthdate.$index") }}</span>
+                                @endif
+
+                                <label for="family_marital_status">Marital Status:</label>
+                                <select name="family_marital_status[]" class="form-control marital-status">
+                                    <option value="">Select Marital Status</option>
+                                    <option value="married" {{ old("family_marital_status.$index") === 'married' ? 'selected' : '' }}>Married</option>
+                                    <option value="unmarried" {{ old("family_marital_status.$index") === 'unmarried' ? 'selected' : '' }}>Unmarried</option>
+                                </select>
+                                @if ($errors->has("family_marital_status.$index"))
+                                    <span class="text-danger">{{ $errors->first("family_marital_status.$index") }}</span>
+                                @endif
+
+                                <div class="form-group family-wedding-date" style="{{ old("family_marital_status.$index") === 'married' ? 'display: block;' : 'display: none;' }}">
+                                    <label for="family_wedding_date">Wedding Date:</label>
+                                    <input type="date" name="family_wedding_date[]" class="form-control" value="{{ old("family_wedding_date.$index") }}">
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
                 <button type="button" id="add-family-member" class="btn btn-secondary">Add Family Member</button>
 

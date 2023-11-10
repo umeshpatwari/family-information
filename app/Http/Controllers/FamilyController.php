@@ -22,9 +22,27 @@ class FamilyController extends Controller
         return view('families.create');
     }
 
-    public function store(SaveFamilyRequest $request, SaveFamilyMemberRequest $familyMemberRequest)
+    public function store(SaveFamilyRequest $request)
     {
+
         try{
+
+            $rules = [
+                'family_name.*' => 'required',
+                'family_birthdate.*' => 'required|date',
+                'family_marital_status.*' => 'required|in:married,unmarried',
+                'family_wedding_date.*' => 'nullable|date',
+                // Add rules for other fields as needed
+            ];
+
+            $messages = [
+                'required' => 'The :attribute field is required.',
+                'date' => 'The :attribute field must be a valid date.',
+                'in' => 'The selected :attribute is invalid.',
+            ];
+
+            $this->validate($request, $rules, $messages);
+            
             // Create Family
             $family = new Family();
             $family->name = $request->input('name');
